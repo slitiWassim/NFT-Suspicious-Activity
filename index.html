@@ -87,6 +87,15 @@
                   <span>Code</span>
                   </a>
               </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
               </a>
             </div>
 
@@ -115,10 +124,9 @@
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
+        <h1 class="title is-3">Framework Overview</h1>
         <div class="publication-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/c4U8tkQkX7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+       <img src="./static/images/framework_TKG.png" width="120%" > 
       </div>
     </div>
     <!--/ Paper video. -->
@@ -128,10 +136,84 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <h3 class="title is-3">Temporal Cycles Detection</h3>
+    <div class="columns is-centered">
+
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+
+            <img src="./static/images/temporal_cycles.png" height="80%" > 
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+  </div>
+    <div class="container is-max-desktop">
+    <div class="columns is-centered">
+
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-4">Temporal Cycles Detected</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Vehicles moving on the roundabout used for bikes is anomalous in this scene.
+            </p>
+            <img src="./static/images/transaction_Vs_Cycles_.png" height="70%" width="70%" > 
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+  </div>
+    <div class="container is-max-desktop">
     <h3 class="title is-3">Ground-based Videos</h3>
     <div class="columns is-centered">
 
-      <!-- Visual Effects. -->
+      <!--/ Visual Effects. -->
+      <div class="column">
+
+        <div class="content">
+          <h4 class="title is-4">UCSD Ped2</h4>
+          <p>
+            In this scene, a cow herd walking on the highway is anomalous.
+          </p>
+            <img src="./static/images/ccdf_cycle_duration.png" > 
+        </div>
+      </div>
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-4">ShanghaiTech Campus</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Vehicles moving on the roundabout used for bikes is anomalous in this scene.
+            </p>
+            <img src="./static/images/ccdf_cycle_length.png" > 
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3">Temporal Motif-based Characterization</h3>
+    <div class="columns is-centered">
+
+      <!--/ Visual Effects. -->
       <div class="column">
 
         <div class="content">
@@ -145,8 +227,6 @@
           </video>
         </div>
       </div>
-      <!--/ Visual Effects. -->
-
       <!-- Matting. -->
       <div class="column">
         <h2 class="title is-4">ShanghaiTech Campus</h2>
@@ -170,7 +250,7 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h3 class="title is-3">Aerial Videos</h3>
+    <h3 class="title is-3">Temporal Motif-based Characterization</h3>
     <div class="columns is-centered">
 
       <!--/ Visual Effects. -->
@@ -241,28 +321,6 @@
     </div>
     <!--/ Concurrent Work. -->
 
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Works</h2>
-        <ul>
-          <li>
-            <a href="https://github.com/Jin-Pu/Drone-Anomaly">ANDT : Anomaly detection in aerial videos with transformers </a>
-          </li>
-          <li>
-            <a href="https://vt-le.github.io/HSTforU/">HSTforU: Anomaly Detection in Aerial and Ground-based Videos with Hierarchical Spatio-Temporal Transformer for U-net</a>
-          </li>
-          <li>
-            <a href="https://github.com/codnjsqkr/FastAno_official">FastAno: Fast Anomaly Detection via Spatio-temporal Patch Transformation</a>
-          </li>
-        </ul>        
-      </div>
-    </div>
   </div>
 </section>
 
