@@ -1,7 +1,7 @@
 # Detecting Suspicious Activity in the NFT Ecosystem using Temporal Graph Analysis
-This is the code for **[Detecting Suspicious Activity in the NFT Ecosystem using Temporal Graph Analysis](https://github.com/slitiWassim/Detecting-Suspicious-Activity-in-the-NFT-Ecosystem)** .
+This is the code for **[Detecting Suspicious Activity in the NFT Ecosystem using Temporal Graph Analysis](https://github.com/slitiWassim/NFT-Suspicious-Activity)** .
 
-### [Project](https://slitiwassim.github.io/Detecting-Suspicious-Activity-in-the-NFT-Ecosystem/) | [Dataset](https://drive.upm.es/s/sLgeSrNxMEzXaEB?openfile=true) | [Paper]()
+### [Project](https://slitiwassim.github.io/NFT-Suspicious-Activity/) | [Dataset](https://drive.upm.es/s/sLgeSrNxMEzXaEB?openfile=true) | [Paper]()
  
 
 ## Framework Overview
@@ -22,8 +22,8 @@ Install the required packages:
   
 Clone this repo:
 
-    git clone https://github.com/slitiWassim/Detecting-Suspicious-Activity-in-the-NFT-Ecosystem.git
-    cd Detecting-Suspicious-Activity-in-the-NFT-Ecosystem/
+    git clone https://github.com/slitiWassim/NFT-Suspicious-Activity.git
+    cd NFT-Suspicious-Activity/
 
 ##  Data Collection and Preparation
 
@@ -57,12 +57,13 @@ A dataset is a directory with the following structure:
 |Number of NFT collections | 1,746,379 |
 |Number of NFT tokens |41,292,572 |
 |Number of account addresses| 7,062,831 |
-|Number of transactions |77,735,708 |
+|Number of transactions |76,300,244  |
 |Chains | 10 |
 
 
 
 ## Temporal Cycles Detection
+In this study, we conducted a temporal, cycle-driven analysis to identify groups of interconnected traders, and then examined the rhythm, ordering, and frequency of their transactions within these cycles to uncover patterns that deviated from normal market activity.
 
 <a href="static/images/temporal_cycles.png" target="_blank">
     <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/temporal_cycles.png" width="100%">
@@ -102,8 +103,7 @@ Instead of computing the full **Cartesian product** of all timestamp combination
 
 
 
-## Training
-To train `Drone-Guard` on a dataset, run:
+To run the  `temporal cycles detection algorithm` on a dataset, run:
 ```bash
  python  train.py --cfg <config-file> --pseudo True
 ```  
@@ -116,7 +116,7 @@ python train.py \
 ```
 
 
-## Temporal Motif-based Characterization
+## Suspicious activity detection 
 Please first download the pre-trained model
 
 | Dataset | Pretrained Model                                                                                  |

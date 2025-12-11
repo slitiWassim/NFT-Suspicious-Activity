@@ -47,24 +47,24 @@
           <h1 class="title is-1 publication-title">Detecting Suspicious Activity in the NFT Ecosystem using Temporal Graph Analysis</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/wassim-sliti-72b080187/">Sliti Wassim</a><sup>1,2</sup>,
+              <a href="https://www.linkedin.com/in/wassim-sliti-72b080187/">Sliti Wassim</a><sup></sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/felixcuadradolatasa/">Félix Cuadrado</a><sup>1,2</sup>,
+              <a href="https://www.linkedin.com/in/felixcuadradolatasa/">Félix Cuadrado</a><sup></sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/leandro-campos-hernaez/">Leandro Campos Hernáez</a><sup>1,2</sup>,
+              <a href="https://www.linkedin.com/in/leandro-campos-hernaez/">Leandro Campos Hernáez</a><sup></sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/juancarlosduenas/">Juan Carlos Dueñas</a><sup>1,2</sup>,
+              <a href="https://www.linkedin.com/in/juancarlosduenas/">Juan Carlos Dueñas</a><sup></sup>,
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Real time systems and telematic services architecture Research Group</span>
+            <span class="author-block">Real time systems and telematic services architecture Research Group</span>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>2</sup>Information Processing and Telecommunications Center (IPTC), Universidad Politécnica de Madrid, Av. Complutense, 30, Moncloa - Aravaca, 28040 Madrid, Spain</span>
+            <span class="author-block">Information Processing and Telecommunications Center (IPTC), Universidad Politécnica de Madrid, Av. Complutense, 30, Moncloa - Aravaca, 28040 Madrid, Spain</span>
           </div>
 
           <div class="column has-text-centered">
@@ -81,7 +81,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/slitiWassim/Detecting-Suspicious-Activity-in-the-NFT-Ecosystem"
+                <a href="https://github.com/slitiWassim/NFT-Suspicious-Activity"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -126,9 +126,8 @@
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h1 class="title is-3">Framework Overview</h1>
-        <div class="publication-video">
-       <img src="./static/images/framework_TKG.jpg" width="120%" > 
+        <div class="">
+       <img src="./static/images/framework_TKG.jpg"  > 
       </div>
     </div>
     <!--/ Paper video. -->
@@ -156,16 +155,16 @@
     </div>
     <!--/ Matting. -->
   </div>
-    <div class="container is-max-desktop">
+  <div class="container is-centered is-max-desktop">
     <div class="columns is-centered">
 
       <!--/ Visual Effects. -->
 
       <!-- Matting. -->
-      <div class="column">
+      <div class="column is-centered">
         <h2 class="title is-4">Temporal Cycles Detected</h2>
         <div class="columns is-centered">
-          <div class="column content">
+          <div class="column content is-centered">
             <p>
               Vehicles moving on the roundabout used for bikes is anomalous in this scene.
             </p>
@@ -209,6 +208,39 @@
     <!--/ Matting. -->
   </div>
 </section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3">Temporal Motif-based Characterization</h3>
+    <div class="columns is-centered">
+
+      <!--/ Visual Effects. -->
+      <div class="column">
+
+        <div class="content">
+          <h4 class="title is-4">UCSD Ped2</h4>
+          <p>
+            In this scene, a cow herd walking on the highway is anomalous.
+          </p>
+          <img src="./static/images/automated_trading_upset.png" >
+        </div>
+      </div>
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-4">ShanghaiTech Campus</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Vehicles moving on the roundabout used for bikes is anomalous in this scene.
+            </p>
+            <img src="./static/images/wash_trading_upset.png" >
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -223,10 +255,7 @@
           <p>
             In this scene, a cow herd walking on the highway is anomalous.
           </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/ped2_video.mp4"
-                    type="video/mp4">
-          </video>
+          <img src="./static/images/automated_trading_upset.png" >
         </div>
       </div>
       <!-- Matting. -->
@@ -237,10 +266,7 @@
             <p>
               Vehicles moving on the roundabout used for bikes is anomalous in this scene.
             </p>
-            <video id="matting-video" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/shanghai_video.mp4"
-                      type="video/mp4">
-            </video>
+            <img src="./static/images/wash_trading_upset.png" >
           </div>
 
         </div>
@@ -256,19 +282,25 @@
     <div class="columns is-centered">
 
       <!--/ Visual Effects. -->
+      <div class="column">
 
+        <div class="content">
+          <h4 class="title is-4">UCSD Ped2</h4>
+          <p>
+            In this scene, a cow herd walking on the highway is anomalous.
+          </p>
+          <img src="./static/images/motifs_ratio_60_xy.png" >
+        </div>
+      </div>
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-4">Bike</h2>
+        <h2 class="title is-4">ShanghaiTech Campus</h2>
         <div class="columns is-centered">
           <div class="column content">
             <p>
               Vehicles moving on the roundabout used for bikes is anomalous in this scene.
             </p>
-            <video id="matting-video" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/Bike_video.mp4"
-                      type="video/mp4">
-            </video>
+            <img src="./static/images/motifs_ratio_wash_traders_1d_xy.png" >
           </div>
 
         </div>
@@ -278,51 +310,22 @@
   </div>
 </section>
 
+
+
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Concurrent Work. -->
+    <!-- Animation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Anomaly score</h2>
+        <h2 class="title is-3">Acknowledgements</h2>
 
-        <div class="content has-text-justified">
-          <p>
-            In each image, the anomaly score is represented by a red line, showing rapid fluctuations between normal and abnormal events. 
-          </p>
-          <h4 class="title is-4">Ground-based Datasets</h4>
-          <div class="content has-text-centered">
-            <img src="static/images/annomaly_score_ped2.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold"> UCSD Ped2 Dataset</p>
-         </div>
-
-          <div class="content has-text-centered">
-            <img src="static/images/annomaly_score_avenue.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">CUHK Avenue Dataset</p>
-          </div>
-
-          <div class="content has-text-centered">
-            <img src="static/images/anomaly_score_shanghai.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">ShanghaiTech Dataset</p>
-          </div>
-          <h4 class="title is-4">Drone-anomaly Dataset</h4>
-          <div class="content has-text-centered">
-            <img src="static/images/annomaly_score_bike.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold"> Bike roundabout</p>
-         </div>
-        
-        </div>
+        <p>
+        This work was carried out within the STRAST Research Group at the Information Processing and Telecommunications Center (IPTC), Universidad Politécnica de Madrid, as part of the <a href="https://cedar-heu-project.eu/">CEDAR</a>  project, funded by the Horizon Europe Programme (Grant Agreement No. 101135577).         </p>
       </div>
     </div>
-    <!--/ Concurrent Work. -->
-
   </div>
 </section>
 
@@ -339,42 +342,25 @@
       <div class="column">
 
         <div class="content">
-          <img src="./static/images/UPM.png" height="80%" width="80%">
+          <img src="./static/images/UPM.png" height="100%" width="100%">
+          
+        </div>
+      </div>
+      <div class="column">
+
+        <div class="content">
+          <img src="./static/images/logo_iptc_sq_color.png" height="55%" width="55%">
           
         </div>
       </div>
       <!--/ Visual Effects. -->
 
-      <!-- Matting. -->
-      <div class="column">
-        
-        <div class="columns is-centered">
-          <div class="column content">
-            <img src="./static/images/logo_iptc_sq_color.png" height="100%">
-            
-          </div>
-
-        </div>
-      </div>
     </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Acknowledgements</h2>
-
-        <p>
-        This work was carried out within the STRAST Research Group at the Information Processing and Telecommunications Center (IPTC), Universidad Politécnica de Madrid, as part of the <a href="https://cedar-heu-project.eu/">CEDAR</a>  project, funded by the Horizon Europe Programme (Grant Agreement No. 101135577).         </p>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <section class="section" id="BibTeX">
@@ -387,7 +373,7 @@
 
   
   <div  class="content has-text-centered">                    
-     <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map.js?d=5CsG3pqkgVn9haQct1u6kk4W1WcUU_erfcKVzeX44VM&cl=ffffff&w="></script>
+     <script type='text/javascript' id='mapmyvisitors' src='https://mapmyvisitors.com/map.js?cl=ffffff&w=301&t=n&d=Ti8_HsdNIgiVThOEACLUySU2z5Kl4rAkNQ1zXrG5OGA'></script>
   </div>    
   
 
