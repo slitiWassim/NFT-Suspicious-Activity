@@ -63,7 +63,7 @@ A dataset is a directory with the following structure:
 
 
 ## Temporal Cycles Detection
-In this study, we conducted a temporal, cycle-driven analysis to identify groups of interconnected traders, and then examined the rhythm, ordering, and frequency of their transactions within these cycles to uncover patterns that deviated from normal market activity.
+In this study, we conducted a temporal cycle-driven analysis to identify groups of interconnected traders, and then examined the rhythm, ordering, and frequency of their transactions within these cycles to uncover patterns that deviated from normal market activity.
 
 <a href="static/images/temporal_cycles.png" target="_blank">
     <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/temporal_cycles.png" width="100%">
@@ -82,7 +82,7 @@ Illustrative example of temporal cycle extraction from a temporal graph.
 
 Following the [NetworkX implementation of Johnson’s algorithm](https://github.com/networkx/networkx/blob/main/networkx/algorithms/cycles.py) ,  the search is restricted to Strongly Connected Components .
 
-Strongly Connected Components (SCCs) are identified using **Raphtory** built-in method.  
+Strongly Connected Components (SCCs) are identified using [**Raphtory**](https://docs.raphtory.com/en/v0.16.3/) built-in method.  
 
 ### 2) Johnson cycle search
 
@@ -90,11 +90,11 @@ Running the algorithm by examining cycles from every temporal edge individually 
 
 This filtering step significantly reduces the search space while preserving cycles that are likely to be temporally valid.
 
-Within each strongly connected component (SCC), a **modified Johnson backtracking algorithm** is then employed to enumerate structural cycles. Each candidate cycle undergoes **early pruning** through an interval compatibility check ,to ensure temporal feasibility between consecutive edges.
+Within each strongly connected component (SCC), an **adapted Johnson backtracking algorithm** is then employed to enumerate structural cycles. Each candidate cycle undergoes **early pruning** through an interval compatibility check ,to ensure temporal feasibility between consecutive edges.
 
 ### 3) **Cycle validation**
 
-Each candidate (structural) cycle is passed through `validate_cycle()`, which performs a fine grained temporal validation  by checking for a strictly **increasing sequence of timestamps** across edges.   Only cycles satisfying full temporal consistency are accepted.
+Each candidate (structural) cycle is passed through `validate`, which performs a fine grained temporal validation  by checking for a strictly **increasing sequence of timestamps** across edges.   Only cycles satisfying full temporal consistency are accepted.
 
 Instead of computing the full **Cartesian product** of all timestamp combinations (which can explode combinatorially), it performs **incremental DFS pruning**:
 
@@ -116,7 +116,7 @@ python train.py \
 ```
 
 
-## Suspicious activity detection 
+## Suspicious Activity Detection 
 Please first download the pre-trained model
 
 | Dataset | Pretrained Model                                                                                  |
@@ -141,6 +141,22 @@ python test.py \
     --cfg config/ped2.yaml \
     --model-file  pre-trained/best_model_ped2.pth
 ```
+
+## Temporal Motif-based Characterization 
+
+To investigate the wallets flagged as suspicious and better understand their trading behavior despite the lack of labeled data, we conduct a temporal motif analysis. This method helps us identify recurring transaction patterns and interaction structures, compare them with normal trading behavior in the broader ecosystem, and
+provides additional evidence supporting the anomalous or
+potentially illicit nature of these wallets activities.
+
+<a href="static/images/motifs_example.png" target="_blank">
+    <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/motifs_example.png" width="100%">
+</a>
+
+An example of extracting a particular temporal motif from a temporal graph. ($\textbf{a}$) is an example of $\delta$-temporal motif $M$ with a given $\delta$ = 10; ($\textbf{b}$) is a temporal graph with edges appearing at the times shown on
+each edge; ($\textbf{c}$) shows an instance of $\delta$-temporal motifs in the temporal graph; ($\textbf{d}$) is not a $\delta$-temporal motif
+because the difference between the timestamp of the first temporal edge and the timestamp of the last temporal
+edge exceeds the given $\delta$
+
 
 ## Configuration
  * We use [YAML](https://yaml.org/) for configuration.
