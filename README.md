@@ -80,13 +80,16 @@ Illustrative example of temporal cycle extraction from a temporal graph.
 
 ### 1) Strongly Connected Components decomposition
 
-Following the [NetworkX implementation of Johnson’s algorithm](https://github.com/networkx/networkx/blob/main/networkx/algorithms/cycles.py) ,  the search is restricted to Strongly Connected Components .
-
+Following the implementation of [Johnson’s algorithm](https://epubs.siam.org/doi/abs/10.1137/0204007) ,  the search is restricted to Strongly Connected Components .
 Strongly Connected Components (SCCs) are identified using [**Raphtory**](https://docs.raphtory.com/en/v0.16.3/) built-in method.  
+<a href="static/images/scc.svg" target="_blank">
+    <image  src="static/images/scc.svg">
+</a>
+
 
 ### 2) Johnson cycle search
 
-Running the algorithm by examining cycles from every temporal edge individually would cause an exponential increase in complexity due to the vast number of temporal edges in temporal graphs. To improve efficiency, we instead focus on identifying **potentially temporal cycles**. This is achieved by locating structural cycles where consecutive edges $e_t$​ and $e_{t+1}$​ satisfy the temporal consistency condition  $min⁡(e_t.times)<max⁡(e_{t+1}.times)$.
+Running the algorithm by examining cycles from every temporal edge individually would cause an exponential increase in complexity due to the vast number of temporal edges in temporal graphs. To improve efficiency, we instead focus on identifying **potentially temporal cycles**. This is achieved by locating structural cycles where consecutive edges $e_t$​ and $e_{t+1}$​ satisfy the temporal consistency condition  $min⁡(e_t.\tau)<max⁡(e_{t+1}.\tau)$.
 
 This filtering step significantly reduces the search space while preserving cycles that are likely to be temporally valid.
 
@@ -103,44 +106,44 @@ Instead of computing the full **Cartesian product** of all timestamp combination
 
 
 
-To run the  `temporal cycles detection algorithm` on a dataset, run:
+To run the `temporal cycles detection algorithm` on a dataset, run:
 ```bash
- python  train.py --cfg <config-file> --pseudo True
+ python  extract_temporal_cycles.py --dataset </path/to/transactions-file> 
 ```  
- For example, to train `Drone-Guard` on Ped2:
+ For example, to detect  `temporal cycles` with Maximum duration δ = 24 hours and Maximum cycle length L = 15:
 
 ```bash
-python train.py \
-    --cfg config/ped2.yaml \
-    --pseudo True # To Train model with both normal and pseudo anomalies data
+python extract_temporal_cycles.py \
+    --dataset data/nft_transactions.parquet \      # Path to the dataset
+    --window "7 day" \                             # Size of the temporal rolling window
+    --step "6 day" \                               # Step size between consecutive rolling windows
+    --max-duration 36e5 * 24 \                     # Maximum cycle Duration
+    --max-length 15 \                              # Maximum cycle length 
+    --num-processes 8                              # Number of parallel processes (1 = sequential execution)
+
 ```
 
 
 ## Suspicious Activity Detection 
-Please first download the pre-trained model
+Please note that, in order to detect suspicious trading activities, temporal trading cycles must be detected first; alternatively, you can download pre-detected cycles from [here](https://drive.upm.es/s/7xRHTdFwCT2D5Ga)
 
-| Dataset | Pretrained Model                                                                                  |
-|--|---------------------------------------------------------------------------------------|
-| UCSD Ped2 | [![Google drive](https://badgen.net/static/Link/Ped2/blue?icon=chrome)](https://drive.google.com/file/d/1M2zmfCxYB-f7e9zxoDzVeYxA7bcF8ock/view?usp=drive_link) |
-| CUHK Avenue | [![Google drive](https://badgen.net/badge/Link/Avenue/blue?icon=chrome)](https://drive.google.com/file/d/1FE_ndmAgGbK7PWL0GbaQMYp6WplXeqWY/view?usp=drive_link) |
-| ShanghaiTech | [![Google drive](https://badgen.net/badge/Link/ShanghaiTech/blue?icon=chrome)](https://drive.google.com/file/d/1bxOlFPju_LONHjJQlUo28dIpY8ZSucto/view?usp=drive_link) |
-| Drone-Anomaly | [![Google drive](https://badgen.net/badge/Link/Drone-Anomaly/blue?icon=chrome)](https://drive.google.com/drive/folders/1MyzMWROIyj7iAHPFZmg1RD7QmW0CHzTU?usp=drive_link)    |
-
-To evaluate a pretrained `Drone-Guard` on a dataset, run:
+To identify suspicious trading activities within transactional data, run the following:
 
 ```bash
- python test.py \
-    --cfg <path/to/config/file> \
-    --pretrained </path/to/pre-trained/model> 
+python suspicious.py \ 
+    --dataset </path/to/transactions-file>  \
+    --cycles  </path/to/cycles_data> 
 ```      
  
- For example, to evaluate `Drone-Guard` on Ped2:
+ For example :
 
 ```bash
-python test.py \
-    --cfg config/ped2.yaml \
-    --model-file  pre-trained/best_model_ped2.pth
+python suspicious.py \
+    --dataset data/nft_transactions.parquet \
+    --cycles-dir cycles_data
+
 ```
+Flagged suspicious trading activities will be saved in the `output/results` directory.
 
 ## Temporal Motif-based Characterization 
 
@@ -158,10 +161,12 @@ because the difference between the timestamp of the first temporal edge and the 
 edge exceeds the given $\delta$
 
 
-## Configuration
- * We use [YAML](https://yaml.org/) for configuration.
- * We provide a couple preset configurations.
- * Please refer to `config.py` for documentation on what each configuration does.
+<a href="static/images/possible_motifs.png" target="_blank">
+    <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/possible_motifs.png" width="60%">
+</a>
+
+
+Our Temporal Motif-based Characterization is based on the work of [Naomi et al.](https://www.nature.com/articles/s41598-024-75348-7) and has been adapted as a validation approach to address the lack of labeled data, effectively demonstrating the unusual trading behavior of flagged traders.
 
 ## Citing
 If you find our work useful, please consider citing:
