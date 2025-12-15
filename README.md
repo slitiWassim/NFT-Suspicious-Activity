@@ -29,12 +29,15 @@ Clone this repo:
 
 
 
-
-
-<a href="static/images/data_collection_preparation.jpg" target="_blank">
-    <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/data_collection_preparation.jpg" width="80%">
-</a>
-
+<p align="center">
+  <a href="static/images/data_collection_preparation.jpg" target="_blank">
+    <img
+      src="static/images/data_collection_preparation.jpg"
+      width="80%"
+      style="border: 2px solid rgb(201, 196, 196);"
+    >
+  </a>
+</p>
 
 
 A dataset is a directory with the following structure:
