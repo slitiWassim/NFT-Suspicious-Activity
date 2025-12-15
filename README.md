@@ -32,14 +32,14 @@ Clone this repo:
 
 
 <a href="static/images/data_collection_preparation.jpg" target="_blank">
-    <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/data_collection_preparation.jpg" width="100%">
+    <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/data_collection_preparation.jpg" width="80%">
 </a>
 
 
 
 A dataset is a directory with the following structure:
   ```bash
-  $ tree dataset
+  $ tree data
   NFTs_Dataset
   ├── mapping
   │   ├── nft_id_mapping
