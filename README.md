@@ -82,9 +82,16 @@ Illustrative example of temporal cycle extraction from a temporal graph.
 
 Following the implementation of [Johnson’s algorithm](https://epubs.siam.org/doi/abs/10.1137/0204007) ,  the search is restricted to Strongly Connected Components .
 Strongly Connected Components (SCCs) are identified using [**Raphtory**](https://docs.raphtory.com/en/v0.16.3/) built-in method.  
-<a href="static/images/scc.svg" target="_blank">
-    <image  src="static/images/scc.svg">
-</a>
+
+
+
+<p align="center">
+  <a href="static/images/scc.svg" target="_blank">
+    <img
+      src="static/images/scc.svg"
+    >
+  </a>
+</p>
 
 
 ### 2) Johnson cycle search
@@ -161,12 +168,39 @@ because the difference between the timestamp of the first temporal edge and the 
 edge exceeds the given $\delta$
 
 
-<a href="static/images/possible_motifs.png" target="_blank">
-    <image style="border: 2px solid rgb(201, 196, 196);" src="static/images/possible_motifs.png" width="60%">
-</a>
+<p align="center">
+  <a href="static/images/possible_motifs.png" target="_blank">
+    <img
+      src="static/images/possible_motifs.png"
+      width="60%"
+      style="border: 2px solid rgb(201, 196, 196);"
+    >
+  </a>
+</p>
+
 
 
 Our Temporal Motif-based Characterization is based on the work of [Naomi et al.](https://www.nature.com/articles/s41598-024-75348-7) and has been adapted as a validation approach to address the lack of labeled data, effectively demonstrating the unusual trading behavior of flagged traders.
+
+
+
+
+```bash
+python motifs.py \ 
+    --dataset </path/to/transactions-file>  \
+    --nodes  </path/to/suspicious-wallets> 
+```  
+
+ For example :
+
+```bash
+python motifs.py \
+    --dataset data/nft_transactions.parquet \
+    --nodes output/results
+
+```
+Temporal Motif-based Characterization will be saved in the `output/motifs` directory.
+
 
 ## Citing
 If you find our work useful, please consider citing:

@@ -2,7 +2,6 @@ from collections import defaultdict
 import numpy as np 
 from itertools import chain
 from raphtory import algorithms as rp
-from raphtory import Graph
 
 
 # ---- Main function ----
