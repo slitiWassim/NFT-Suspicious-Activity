@@ -127,7 +127,7 @@ python extract_temporal_cycles.py \
     --dataset data/nft_transactions.parquet \      # Path to the dataset
     --window "7 day" \                             # Size of the temporal rolling window
     --step "6 day" \                               # Step size between consecutive rolling windows
-    --max-duration 36e5 * 24 \                     # Maximum cycle Duration
+    --max-duration "1 day" \                       # Maximum cycle Duration
     --max-length 15 \                              # Maximum cycle length 
     --num-processes 8                              # Number of parallel processes (1 = sequential execution)
 
@@ -150,7 +150,7 @@ python suspicious.py \
 ```bash
 python suspicious.py \
     --dataset data/nft_transactions.parquet \
-    --cycles-dir cycles_data
+    --cycles cycles_data
 
 ```
 Flagged suspicious trading activities will be saved in the `output/results` directory.
@@ -180,7 +180,6 @@ edge exceeds the given $\delta$
     >
   </a>
 </p>
-
 
 
 Our Temporal Motif-based Characterization is based on the work of [Naomi et al.](https://www.nature.com/articles/s41598-024-75348-7) and has been adapted as a validation approach to address the lack of labeled data, effectively demonstrating the unusual trading behavior of flagged traders.

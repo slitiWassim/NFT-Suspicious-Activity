@@ -10,31 +10,13 @@ from tqdm import tqdm
 # IMPORT SUSPICIOUS BEHAVIOR FUNCTIONS
 # ---------------------------------------------------------------------
 # Adjust the import path if needed
-from utils import automated_traders, wash_traders
+from utils import automated_traders, wash_traders, setup_logger
 
 
 # ---------------------------------------------------------------------
 # LOGGING SETUP
 # ---------------------------------------------------------------------
-def setup_logger():
-    log_dir = Path("output/log")
-    log_dir.mkdir(parents=True, exist_ok=True)
-
-    log_file = log_dir / f"suspicious_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
-
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(message)s",
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler()
-        ],
-    )
-
-    return logging.getLogger(__name__)
-
-
-logger = setup_logger()
+logger = setup_logger("output/logs.log")
 
 
 # ---------------------------------------------------------------------

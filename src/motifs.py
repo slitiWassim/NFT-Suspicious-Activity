@@ -6,28 +6,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
 
-from utils import motifs, to_heatmap, ccdf  # assumes these are defined in utils
+
+from utils import motifs, to_3d_heatmap, ccdf ,setup_logger
+
 
 
 # ---------------------------------------------------------------------
 # Logging
 # ---------------------------------------------------------------------
-def setup_logger():
-    log_dir = Path("output/log")
-    log_dir.mkdir(parents=True, exist_ok=True)
-    log_file = log_dir / "motifs.log"
-
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(message)s",
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler()
-        ],
-    )
-    return logging.getLogger(__name__)
-
-logger = setup_logger()
+logger = setup_logger("output/logs.log")
 
 
 # ---------------------------------------------------------------------
@@ -134,9 +121,9 @@ def main():
         motif_array, normal_array, automated_array, wash_array = motifs(df, cycles)
 
         # Convert to heatmaps
-        normal_heatmap = to_heatmap(normal_array)
-        automated_heatmap = to_heatmap(automated_array)
-        wash_heatmap = to_heatmap(wash_array)
+        normal_heatmap = to_3d_heatmap(normal_array)
+        automated_heatmap = to_3d_heatmap(automated_array)
+        wash_heatmap = to_3d_heatmap(wash_array)
         ratio_heatmap = automated_heatmap / (normal_heatmap + 1e-9)
 
         # Save heatmaps

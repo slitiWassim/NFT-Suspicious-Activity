@@ -3,38 +3,18 @@ import logging
 import os
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
-
 import pandas as pd
 from tqdm import tqdm
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-from raphtory import Graph
-from utils import temporal_cycles
+
+from utils import temporal_cycles , build_temporal_graph , valid_graph_view , setup_logger
 
 
 # ---------------------------------------------------------------------
 # LOGGING SETUP
 # ---------------------------------------------------------------------
-def setup_logger():
-    log_dir = Path("output/log")
-    log_dir.mkdir(parents=True, exist_ok=True)
-
-    log_file = log_dir / f"temporal_cycles_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
-
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(processName)s | %(message)s",
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler()
-        ],
-    )
-
-    return logging.getLogger(__name__)
-
-
-logger = setup_logger()
+logger = setup_logger("output/logs.log")
 
 
 # ---------------------------------------------------------------------
@@ -44,64 +24,19 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Run temporal cycle Detection")
 
     parser.add_argument("--dataset", type=str, required=True)
-    parser.add_argument("--max-duration", type=int, default=None)
+    parser.add_argument("--max-duration", type=str, default=None)
     parser.add_argument("--max-length", type=int, default=None)
     parser.add_argument("--max-combo", type=int, default=None)
     parser.add_argument("--max-cycles", type=int, default=None)
-    parser.add_argument("--window", type=int, required=True)
-    parser.add_argument("--step", type=int, required=True)
+    parser.add_argument("--window", type=str, required=True)
+    parser.add_argument("--step", type=str, required=True)
     parser.add_argument("--num-processes", type=int, default=1,
                         help="Number of parallel processes (1 = sequential)")
 
     return parser.parse_args()
 
 
-# ---------------------------------------------------------------------
-# TEMPORAL GRAPH CONSTRUCTION
-# ---------------------------------------------------------------------
-def build_temporal_graph(df: pd.DataFrame) -> Graph:
-    g = Graph()
-    g.load_edges_from_pandas(
-        df,
-        src="seller_num",
-        dst="buyer_num",
-        time="closing_date",
-        properties=["nft_num", "price_usd"],
-        layer_col="chain",
-    )
-    return g
 
-
-# ---------------------------------------------------------------------
-# VALID GRAPH VIEW
-# ---------------------------------------------------------------------
-def valid_graph_view(rolling_g, max_duration: Optional[float] = None):
-    if rolling_g is None or rolling_g.count_edges() == 0:
-        logger.debug("Empty Temporal graph")
-        return rolling_g
-
-    valid_nodes = []
-
-    for node in rolling_g.nodes:
-        if node.in_degree() == 0 or node.out_degree() == 0:
-            continue
-
-        try:
-            t_in = node.in_edges.earliest_time.min()
-            t_out = node.out_edges.latest_time.max()
-        except Exception:
-            logger.debug(f"Invalid temporal data for node {node}")
-            continue
-
-        if t_out < t_in:
-            continue
-
-        if max_duration is not None and (t_out - t_in) > max_duration:
-            continue
-
-        valid_nodes.append(node.name)
-
-    return rolling_g.subgraph(valid_nodes)
 
 
 # ---------------------------------------------------------------------
@@ -118,7 +53,7 @@ def process_collection(
         all_cycles = []
 
         for rolling_g in g.rolling(window=args.window, step=args.step):
-            rolling_g = valid_graph_view(rolling_g, args.max_duration)
+            rolling_g = valid_graph_view(rolling_g,logger,args.max_duration)
 
             cycles = temporal_cycles(
                 rolling_g,
@@ -157,7 +92,7 @@ def main():
     if not dataset_path.exists():
         raise FileNotFoundError(dataset_path)
 
-    output_dir = Path("cycles_data")
+    output_dir = Path("data/cycles_data")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     logger.info(f"Loading dataset: {dataset_path}")
