@@ -48,7 +48,10 @@ A dataset is a directory with the following structure:
   │   ├── nft_id_mapping
   │   └── wallet_id_mapping
   │
+  ├── collections.csv
+  │
   └── opensea_nft_transactions.parquet
+  
   
   ```
 
