@@ -5,10 +5,9 @@ pyarrow==20.0.0
 distinctipy
 raphtory==0.16.2
 typing
-itertools
-collections
+more-itertools
+collection
 logging
 matplotlib
 seaborn
-pthlib
 argparse

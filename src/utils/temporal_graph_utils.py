@@ -1,11 +1,8 @@
 from raphtory import Graph
+from raphtory import algorithms as rp
 from typing import Optional
 
 import pandas as pd
-import numpy as np
-
-
-## plot motifs for the Gainers and loosers 
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -86,10 +83,36 @@ def ccdf(listlike, normalised=True):
 
 
 
+def temporal_motifs_characterization(g,suspicious_wallets,delta,threads=64):
+    
+    ## Calculate local motifs for all the graph 
+    local_motifs = rp.local_temporal_three_node_motifs(g,delta=delta)
+
+    ## Remove Suspicious wallets to avoid their effect on their neighboors and calculate motifs for the rest of the wallets
+    normal_wallets = list(set(g.nodes.name) - set(suspicious_wallets))
+    g_normal  = g.subgraph(list(normal_wallets))    
+    
+    ## Calculate noraml motifs presenting the normal trading behavior in the market 
+    normal_motifs = rp.global_temporal_three_node_motif(g_normal,delta=delta,threads=threads)
+
+    suspicious_motifs = np.zeros(40, dtype=np.int64)
+
+    for node in local_motifs.nodes():
+        name = node.name
+        if name in suspicious_wallets:
+            suspicious_motifs += local_motifs[name]
+
+    suspicious_motifs = suspicious_motifs.tolist()
+    del g_normal
+    return suspicious_motifs , normal_motifs , local_motifs 
+
+
+
 # Mapping different motifs to their place in the heatmap.
 mapper = {0:(5,5),1:(5,4),2:(4,5),3:(4,4),4:(4,3),5:(4,2),6:(5,3),7:(5,2),8:(0,0),9:(0,1),10:(1,0),11:(1,1),12:(2,1),13:(2,0),14:(3,1),15:(3,0),
           16:(0,5),17:(0,4),18:(1,5),19:(1,4),20:(2,3),21:(2,2),22:(3,3),23:(3,2),24:(5,0),25:(5,1),26:(4,0),27:(4,1),28:(4,1),29:(4,0),30:(5,1),
           31:(5,0),32:(0,2),33:(2,4),34:(1,2),35:(3,4),36:(0,3),37:(2,5),38:(1,3),39:(3,5)}
+
 
 def to_3d_heatmap(motif_flat, data_type=int):
     motif_3d = np.zeros((6,6),dtype=data_type)

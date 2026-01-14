@@ -37,6 +37,20 @@ def parse_args():
 
 
 
+def parse_duration(duration: str) -> int:
+    value, unit = duration.split()
+
+    value = int(value)
+    unit = unit.lower()
+
+    if unit in ["hour", "hours"]:
+        return int(36e5 * value)
+    elif unit in ["day", "days"]:
+        return int(36e5 * 24 * value)
+    elif unit in ["minute", "minutes"]:
+        return int(36e5 / 60 * value)
+    else:
+        raise ValueError(f"Unsupported duration unit: {unit}")
 
 
 # ---------------------------------------------------------------------
@@ -51,22 +65,21 @@ def process_collection(
     try:
         g = build_temporal_graph(collection_df)
         all_cycles = []
-
         for rolling_g in g.rolling(window=args.window, step=args.step):
-            rolling_g = valid_graph_view(rolling_g,logger,args.max_duration)
+            rolling_g = valid_graph_view(rolling_g,logger,parse_duration(args.max_duration))
 
             cycles = temporal_cycles(
                 rolling_g,
                 max_length=args.max_length,
                 max_cycles=args.max_cycles,
-                max_duration=args.max_duration,
+                max_duration=parse_duration(args.max_duration),
                 max_combo=args.max_combo,
             )
 
-            if cycles:
-                all_cycles.extend(list(cycles))
+            
+            all_cycles += list(cycles)
 
-        if not all_cycles:
+        if len(all_cycles)==0 :
             logger.info(f"No cycles found for collection {collection}")
             return
 
