@@ -206,6 +206,19 @@ python motifs.py \
 Temporal Motif-based Characterization will be saved in the `output/motifs` directory.
 
 
+## Sensitivity Analysis
+To evaluate the stability and robustness of the proposed framework, we conduct a sensitivity analysis on the key threshold parameters used to filter suspicious wallets. The figure below reports the sensitivity of the proposed approach to variations in the key detection parameters. Each row corresponds to a specific parameter value, and the cell colors indicate the similarity (%) with respect to the baseline results.
+
+<p align="center">
+  <a href="static/images/Sensitivity_matrix.png" target="_blank">
+    <img
+      src="static/images/Sensitivity_matrix.png"
+      width="90%">
+  </a>
+</p>
+
+
+
 ## Citing
 If you find our work useful, please consider citing:
 ```BibTeX
