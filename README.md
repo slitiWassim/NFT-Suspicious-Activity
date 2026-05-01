@@ -222,7 +222,13 @@ To evaluate the stability and robustness of the proposed framework, we conduct a
 ## Citing
 If you find our work useful, please consider citing:
 ```BibTeX
-Paper submitted 
+@article{sliti2026detecting,
+  title={Detecting Suspicious Activity in the NFT Ecosystem Using Temporal Graph Analysis},
+  author={Sliti, Wassim and Cuadrado, F{\'e}lix and Hern{\'a}ez, Leandro Campos and Due{\~n}as, Juan C},
+  journal={IEEE Transactions on Network Science and Engineering},
+  year={2026},
+  publisher={IEEE}
+}
 
 ```
 
