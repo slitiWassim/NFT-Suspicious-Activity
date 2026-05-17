@@ -1,7 +1,7 @@
 # Detecting Suspicious Activity in the NFT Ecosystem using Temporal Graph Analysis
 This is the code for **[Detecting Suspicious Activity in the NFT Ecosystem using Temporal Graph Analysis](https://github.com/slitiWassim/NFT-Suspicious-Activity)** .
 
-### [Project](https://slitiwassim.github.io/NFT-Suspicious-Activity/) | [Dataset](https://drive.upm.es/s/sLgeSrNxMEzXaEB?openfile=true) | [Paper]()
+### [Project](https://slitiwassim.github.io/NFT-Suspicious-Activity/) | [Dataset](https://drive.upm.es/s/sLgeSrNxMEzXaEB?openfile=true) | [Paper](https://doi.org/10.1109/TNSE.2026.3684082)
  
 
 ## Framework Overview
