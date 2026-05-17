@@ -227,7 +227,9 @@ If you find our work useful, please consider citing:
   author={Sliti, Wassim and Cuadrado, F{\'e}lix and Hern{\'a}ez, Leandro Campos and Due{\~n}as, Juan C},
   journal={IEEE Transactions on Network Science and Engineering},
   year={2026},
-  publisher={IEEE}
+  volume={13},
+  publisher={IEEE},
+  doi={10.1109/TNSE.2026.3684082}
 }
 
 ```
